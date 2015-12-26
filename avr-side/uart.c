@@ -9,9 +9,9 @@ void usart_init( uint16_t ubrr) {
     UBRR0H = (uint8_t)(ubrr>>8);
     UBRR0L = (uint8_t)ubrr;
 
-    // Enable receiver and transmitter
+    // Enable receiver and transmitter, rxcie interrupt
 
-    UCSR0B = (1<<RXEN0)|(1<<TXEN0);
+    UCSR0B = (1<<RXEN0)|(1<<TXEN0)|(1<<RXCIE0);
 
     // Set frame format: 8data, 1stop bit
 
@@ -22,7 +22,7 @@ void usart_putchar(char data) {
 
     // Wait for empty transmit buffer
 
-    while ( !(UCSR0A & (_BV(UDRE0))) );
+    //while ( !(UCSR0A & (_BV(UDRE0))) ); - not necessary when interrupt driven
 
     // Start transmission
 
