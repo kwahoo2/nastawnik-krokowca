@@ -20,7 +20,7 @@ void SerialDriver::setPort(const int val)
 void SerialDriver::openSerial()
 {
 
-    serial->setBaudRate(9600);
+    serial->setBaudRate(38400);
     serial->setParity(QSerialPort::NoParity);
     serial->setStopBits(QSerialPort::OneStop);
     serial->open(QIODevice::ReadWrite);

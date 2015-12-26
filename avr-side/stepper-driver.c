@@ -21,7 +21,7 @@
 Macros and Defines
 ********************************************************************************/
 
-#define BAUD 9600
+#define BAUD 38400
 #define MYUBRR F_CPU/16/BAUD-1
 
 // UART file descriptor
