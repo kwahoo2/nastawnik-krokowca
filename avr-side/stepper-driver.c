@@ -28,7 +28,8 @@ Macros and Defines
 // putchar and getchar are in uart.c
 FILE uart_str = FDEV_SETUP_STREAM(usart_putchar, usart_getchar, _FDEV_SETUP_RW);
 
-volatile uint8_t steps[4] = {0x09, 0x0C, 0x06, 0x03}; //4 full steps
+//volatile uint8_t steps[4] =  {0x09, 0x0C, 0x06, 0x03}; //4 full steps
+volatile uint8_t steps[8] =  {0x09, 0x08, 0x0C, 0x04, 0x06, 0x02, 0x03, 0x01}; //8 half steps
 
 int main(void)
 {  
@@ -52,7 +53,7 @@ int main(void)
     if (step & 0b00000001)
     {
         iX++;
-        if (iX > 3) iX = 0;
+        if (iX > 7) iX = 0;
     }
     if (step & 0b00001000)
     {
@@ -62,14 +63,14 @@ int main(void)
         }
         else
         {
-            iX = 3;
+            iX = 7;
         }
     }
     
     if (step & 0b00000010)
     {
         iY++;
-        if (iY > 3) iY = 0;
+        if (iY > 7) iY = 0;
     }
     if (step & 0b00010000)
     {
@@ -79,14 +80,14 @@ int main(void)
         }
         else
         {
-            iY = 3;
+            iY = 7;
         }
     }
 
     if (step & 0b00000100)
     {
         iZ++;
-        if (iZ > 3) iZ = 0;
+        if (iZ > 7) iZ = 0;
     }
     if (step & 0b00100000)
     {
@@ -96,7 +97,7 @@ int main(void)
         }
         else
         {
-            iZ = 3;
+            iZ = 7;
         }
     }
 
